@@ -20,6 +20,6 @@ To get you started, this is how I generated a new bullet:
 
 The arcade.check_for_collision_with_list(sprite, spriteList) method takes a sprite and a spriteList and returns a list of any elements from spriteList that are currently colliding with sprite.
 
-#USE THIS FOR MAIN2, self.player.kill() will remove the player sprite. .kill() can be (similarly) used to remove any sprite.
+#TRY LINE 100 in update to add game over. USE THIS FOR MAIN2=self.player.kill(), this will remove the player sprite. .kill() can be (similarly) used to remove any sprite. ALSO USE BULLET_enemy for enemy bullets
 
 As always, let me know if you have any questions.
