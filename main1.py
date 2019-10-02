@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 MARGIN = 30
-SCREEN_TITLE = "Arctic Warfare"
+SCREEN_TITLE = "Bullet exercise"
 
 NUM_ENEMIES = 5
 STARTING_LOCATION = (400,100)
@@ -88,26 +88,25 @@ class Window(arcade.Window):
     def update(self, delta_time):
         self.bullet_list.update()
         for e in self.enemy_list:
-            arcade.check_for_collision_with_list(e, self.bullet_list)
-            e.hp -= 10
-            if e.hp < 0: #If enemy hp is less than 0, increase kill score
-                self.score += KILL_SCORE
-                e.kill()
-                self.bullet_list[0].kill()
-            else: 
-                self.score += HIT_SCORE
-                self.bullet_list[0].kill()
+            if arcade.check_for_collision_with_list(e, self.bullet_list):
+                e.hp -= 10
+                if e.hp < 0: #If enemy hp is less than 0, increase kill score
+                    self.score += KILL_SCORE
+                    e.kill()
+                    self.bullet_list[0].kill()
+                else: 
+                    self.score += HIT_SCORE
+                    self.bullet_list[0].kill()
+    
 
-
-            
-           
-
+   
     def on_draw(self):
         arcade.start_render()
         arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
         self.player.draw()
         self.bullet_list.draw()
         self.enemy_list.draw()
+        
 
     def on_mouse_motion(self, x, y, dx, dy):
         '''
